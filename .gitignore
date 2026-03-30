@@ -1,0 +1,17 @@
+# Odoo Ignore
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+
+# Ignore custom user configs
+*.conf
+*.log
+*.zip
+*.tar.gz
+*.csv

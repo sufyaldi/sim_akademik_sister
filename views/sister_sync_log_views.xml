@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sister_sync_log_list" model="ir.ui.view">
+        <field name="name">sister.sync.log.list</field>
+        <field name="model">sister.sync.log</field>
+        <field name="arch" type="xml">
+            <list string="Sync Logs" create="false" edit="false" decoration-danger="status == 'failed'" decoration-success="status == 'success'" decoration-warning="status == 'warning'">
+                <field name="sync_date"/>
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="res_id"/>
+                <field name="status" widget="badge" decoration-success="status == 'success'" decoration-danger="status == 'failed'" decoration-warning="status == 'warning'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sister_sync_log_form" model="ir.ui.view">
+        <field name="name">sister.sync.log.form</field>
+        <field name="model">sister.sync.log</field>
+        <field name="arch" type="xml">
+            <form string="Sync Log Details" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="model_name"/>
+                            <field name="res_id"/>
+                        </group>
+                        <group>
+                            <field name="sync_date"/>
+                            <field name="status" widget="badge" decoration-success="status == 'success'" decoration-danger="status == 'failed'" decoration-warning="status == 'warning'"/>
+                        </group>
+                    </group>
+                    <group string="API Message / Response">
+                        <field name="message" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sister_sync_log" model="ir.actions.act_window">
+        <field name="name">Sync Logs</field>
+        <field name="res_model">sister.sync.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_sister_logs" name="Sync Logs" parent="menu_sister_root" action="action_sister_sync_log" sequence="10"/>
+</odoo>

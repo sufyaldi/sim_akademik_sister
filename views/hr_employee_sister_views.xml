@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_inherit_sister" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.sister</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_sync_to_sister" string="Sync Profil SISTER" type="object" class="oe_highlight" invisible="not sister_id"/>
+                <button name="action_sync_pengajaran_to_sister" string="Sync Pengajaran" type="object" class="btn-primary" invisible="not sister_id"/>
+                <button name="action_sync_publikasi_pengabdian_to_sister" string="Sync Penelitian &amp; Pengabdian" type="object" class="btn-info" invisible="not sister_id"/>
+                <button name="action_sync_kepegawaian_to_sister" string="Sync Kepegawaian &amp; Sertifikasi" type="object" class="btn-warning" invisible="not sister_id"/>
+            </xpath>
+            <notebook position="inside">
+                <page string="Tridharma (SISTER)" name="sister_integration">
+                    <group>
+                        <group>
+                            <field name="sister_id"/>
+                            <field name="sister_last_sync"/>
+                        </group>
+                        <separator string="Kinerja Pengajaran (Riwayat Semester)"/>
+                        <field name="pengajaran_ids">
+                            <list>
+                                <field name="nama_semester"/>
+                                <field name="kode_mata_kuliah"/>
+                                <field name="name"/>
+                                <field name="nama_kelas_kuliah"/>
+                                <field name="sks" widget="float"/>
+                                <field name="jumlah_mahasiswa_krs"/>
+                            </list>
+                        </field>
+                        
+                        <separator string="Riwayat Publikasi (Penelitian)"/>
+                        <field name="publikasi_ids">
+                            <list>
+                                <field name="asal_data"/>
+                                <field name="kategori_kegiatan"/>
+                                <field name="name"/>
+                                <field name="jenis_publikasi"/>
+                            </list>
+                        </field>
+                        
+                        <separator string="Riwayat Pengabdian"/>
+                        <field name="pengabdian_ids">
+                            <list>
+                                <field name="tahun_pelaksanaan"/>
+                                <field name="name"/>
+                                <field name="lama_kegiatan"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+                <page string="Kepegawaian &amp; Sertifikasi (SISTER)" name="sister_kepegawaian_integration">
+                    <group>
+                        <separator string="Riwayat Jabatan Fungsional"/>
+                        <field name="jafung_ids">
+                            <list>
+                                <field name="name"/>
+                                <field name="sk_jabatan"/>
+                            </list>
+                        </field>
+                        
+                        <separator string="Kepangkatan"/>
+                        <field name="kepangkatan_ids">
+                            <list>
+                                <field name="name"/>
+                                <field name="sk_pangkat"/>
+                            </list>
+                        </field>
+                        
+                        <separator string="Pendidikan Formal"/>
+                        <field name="pendidikan_ids">
+                            <list>
+                                <field name="tahun_lulus"/>
+                                <field name="name"/>
+                                <field name="perguruan_tinggi"/>
+                                <field name="bidang_studi"/>
+                            </list>
+                        </field>
+                        
+                        <separator string="Sertifikasi Dosen"/>
+                        <field name="sertifikasi_ids">
+                            <list>
+                                <field name="tahun_sertifikasi"/>
+                                <field name="name"/>
+                                <field name="bidang_studi"/>
+                                <field name="nomor_sk"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
